@@ -1,0 +1,20 @@
+[package]
+name = "vessel-capture"
+version = "0.1.0"
+edition = "2021"
+description = "Microphone input capture on CoreAudio/cpal: device selection, config negotiation, and realtime-safe block delivery"
+license = "MIT"
+
+[dependencies]
+cpal = "0.17.3"
+crossbeam-channel = "0.5"
+hound = { version = "3.5", optional = true }
+
+[dev-dependencies]
+tempfile = "3"
+hound = "3.5"
+
+[features]
+# The WAV writer thread behind CaptureSession; live consumers (block_pipeline)
+# do not need it.
+wav-writer = ["dep:hound"]
